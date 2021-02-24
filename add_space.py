@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-import sys
 
-def add_space():
-    characters = 0
-    for line in sys.stdin:
-        characters = characters + len(line)
-        print(" ".join(line[:]), end="")
+def add_space(line: str) -> str:
+    """
+    returns a copy of `line`, with a space
+    between each character
+    """
+    return " ".join(line[:])
 
 if __name__ == "__main__":
-    add_space()
+    import sys
+    for line in sys.stdin:
+        print(add_space(line), end="")
