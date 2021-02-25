@@ -1,8 +1,8 @@
 
 
-def apply_transforms(line, transforms):
+def apply_transforms(line, transformers):
     transformed = line
-    for transformer in transforms:
+    for transformer in transformers:
         transformed = transformer(transformed)
     return transformed
 
