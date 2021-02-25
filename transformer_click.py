@@ -1,21 +1,22 @@
+#!/usr/bin/env python3
 
+import sys
+import click
+from typing import Iterable, Callable
+from uppercase import to_uppercase
+from add_space import add_space
 
-def apply_transforms(line, transforms):
+def apply_transforms(line: str, transforms: Iterable[Callable[[str], str]]):
     transformed = line
     for transformer in transforms:
         transformed = transformer(transformed)
     return transformed
 
-import sys
-import click
-from uppercase import to_uppercase
-from add_space import add_space
-
 @click.command()
 @click.argument('transform', required=False, default='')
 @click.option('--uppercase', '-u', is_flag=True, flag_value=True,  help="Make uppercase")
 @click.option('--addspace', '-a', is_flag=True, flag_value=True, help="Add a space between each character")
-def transformer(transform:str, uppercase:bool, addspace:bool):
+def transformer(transform:str, uppercase:bool, addspace:bool) -> None:
     """
     Transforms lines of text read from stdin
     """
